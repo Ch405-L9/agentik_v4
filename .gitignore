@@ -3,6 +3,8 @@
 .env.local
 .env.backup
 *.env.backup
+.secrets
+node_modules/
 
 # Secrets
 .secrets/
