@@ -1,0 +1,104 @@
+════════════════════════════════════════════════════════════════
+  AGENTIK V3 - CLEANUP GUIDE
+════════════════════════════════════════════════════════════════
+
+✅ KEEP (Essential for Full Build)
+════════════════════════════════════════════════════════════════
+configs/
+  ├── manifest.yaml         # Discovery config
+  ├── domains.txt           # Target domains
+  └── paths.env            # Path variables
+
+scripts/
+  ├── discover.py          # Discovery phase
+  ├── run.sh               # Lighthouse runner
+  ├── staged_run.sh        # Full pipeline
+  ├── email_to_urls.sh     # Email extraction
+  ├── enrich_contacts.py   # Enrichment
+  └── repo_clean.sh        # Safe cleanup
+
+src/
+  ├── main.py              # CSV compiler
+  └── crew/
+      └── tools/           # Utility tools
+
+outputs/
+  ├── lighthouse/          # Audit reports
+  ├── csv/                 # Results
+  ├── contacts/            # Lead data
+  └── logs/                # Logs
+
+Root Files:
+  ├── requirements.txt     # Python deps
+  ├── .gitignore          # Git config
+  ├── README.md           # Docs
+  └── LICENSE             # License
+
+
+📦 ARCHIVE TO TAKE-OUT/
+════════════════════════════════════════════════════════════════
+→ TAKE-OUT/old-code/
+  ├── keywords-data/           # Old keyword files
+  ├── leadgen_audit/          # Old preflight module
+  ├── phase1_preflight.py     # Old preflight script
+  ├── state_machine.py        # Old state machine
+  ├── json_logger.py          # Duplicate logger
+  └── robots_guard.py         # Duplicate guard
+
+→ TAKE-OUT/old-scripts/
+  ├── check_before_push.sh    # Old version
+  └── cleanup_secrets.sh      # One-time use
+
+→ TAKE-OUT/
+  ├── shn-11.txt              # Old handoff doc
+  ├── gitleaks_after.json     # Git artifact
+  └── .gitleaksignore         # Git artifact
+
+
+🗑️  DELETE (Cache & Duplicates)
+════════════════════════════════════════════════════════════════
+Python Cache:
+  - *.pyc (all compiled Python)
+  - __pycache__/ (all cache dirs)
+  - __init__.cpython-311.pyc
+  - phase1_preflight.cpython-311.pyc
+
+Unnecessary:
+  - __init__.py (root level)
+  - path/to/venv/ (wrong venv location)
+  - .secrets(*.GITIGNORE*)/ (rename to .secrets/)
+
+
+🎯 FINAL CLEAN STRUCTURE
+════════════════════════════════════════════════════════════════
+agentik_v3/
+├── .venv/              # Virtual environment (proper location)
+├── .secrets/           # API keys (gitignored)
+├── configs/            # Configuration files
+├── scripts/            # All pipeline scripts
+├── src/                # Source code
+├── outputs/            # Generated files
+├── tests/              # Test files (if any)
+├── TAKE-OUT/           # Archived old files
+├── requirements.txt
+├── .gitignore
+├── README.md
+└── LICENSE
+
+
+💡 USAGE
+════════════════════════════════════════════════════════════════
+1. Review what will change:
+   bash cleanup_analysis.sh
+
+2. Execute cleanup:
+   bash cleanup_execute.sh
+
+3. Verify structure:
+   tree -L 2 -I 'TAKE-OUT|.secrets|__pycache__|.venv'
+
+4. Test pipeline:
+   source .venv/bin/activate
+   bash scripts/staged_run.sh
+
+════════════════════════════════════════════════════════════════

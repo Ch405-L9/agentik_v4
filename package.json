@@ -1,0 +1,16 @@
+{
+  "name": "agentik-leadgen-audit",
+  "version": "3.0.0",
+  "description": "Agentik Lead Generation and Web Performance Audit Pipeline",
+  "scripts": {
+    "audit": "bash scripts/run.sh",
+    "discover": "python3 scripts/discover.py",
+    "pipeline": "bash scripts/staged_run.sh all"
+  },
+  "dependencies": {
+    "lighthouse": "^12.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

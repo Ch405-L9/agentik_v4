@@ -1,0 +1,12 @@
+keywords:
+  - "web development agency"
+  - "digital marketing consultant"
+  - "SEO services"
+  - "UI UX design studio"
+  - "cloud infrastructure"
+
+providers:
+  duckduckgo:
+    enabled: true
+    rate_limit_rps: 0.5
+    daily_quota_threshold: 100
